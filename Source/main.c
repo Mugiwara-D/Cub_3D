@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:36:14 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 04:12:15 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:46:20 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	init_zero(t_game *game, char *argv)
 	int	i;
 
 	game->cubfile = NULL;
-	game->testmap = NULL;
+	game->rectmap = NULL;
 	game->map = NULL;
-	game->ncol = 0;
-	game->nline = 0;
+	game->maxcol = 0;
+	game->map_lines = 0;
 	game->conf_lines = 0;
 	game->color_ceiling = 0;
 	game->color_floor = 0;
@@ -80,7 +80,7 @@ int	arg_check(int argc, char **argv)
 		return (printf("Invalid map file\n"), 1);
 	if (ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub"))
 		return (printf("Map sould be a .cub file\n"), 1);
-	fd = open(argv, O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (printf("failed to open map file\n"), 1);
 	line = get_next_line(fd);
@@ -103,5 +103,14 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (printf("failed to malloc structure\n"), 1);
 	init_zero(game, argv[1]);
-	read_init(game);
+	if (read_init(game))
+		return (1);
+	if (read_map(game))
+		return (1);
+	if (!game->map)
+		return (1); //failed malloc
+	if (map_check(game))
+		return (1);
+	if (start_game(game))
+		return (1);
 }

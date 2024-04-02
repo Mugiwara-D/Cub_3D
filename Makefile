@@ -1,4 +1,12 @@
 SRC = Source/main.c \
+		Source/utils1.c \
+		Source/utils2.c \
+		Source/utils3.c \
+		Source/utils4.c \
+		Source/utils5.c \
+		Source/utils6.c \
+		Source/utils7.c \
+		Source/utils8.c \
 		
 NAME = cub3D
 

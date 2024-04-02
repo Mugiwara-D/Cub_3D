@@ -33,6 +33,12 @@
 # define KEY_Q				113
 # define KEY_ESC  			65307
 
+# define WIDTH		640
+# define HEIGHT		480
+# define ANGLE_STEP		0.02f
+# define LINEAR_STEP	0.3f
+# define FOV			1.047f // Field Of Vision 60 degrees
+# define MAP_SCALE		4
 
 typedef struct s_sprite
 {
@@ -43,9 +49,9 @@ typedef struct s_sprite
 
 typedef struct s_rgb
 {
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
+	int	r;
+	int	g;
+	int	b;
 
 }	t_rgb;
 
@@ -78,14 +84,14 @@ typedef struct s_ray
 
 typedef struct s_game
 {
-	char		*cubfile;
-	char		**testmap;
-	char		**map;
+	char		**rectmap;
 	char		*text_paths[4];
+	char		*cubfile;
+	char		*map;
 	char		*argv;
 	int			fd;
-	int			ncol;
-	int			nline;
+	int			maxcol;
+	int			map_lines;
 	int			conf_lines;
 	int			color_ceiling;
 	int			color_floor;
@@ -103,5 +109,24 @@ typedef struct s_game
 	t_img		text[4];
 
 }	t_game;
+
+void	clean_strs(char **strs1, char **strs2, char **strs3);
+int	read_init(t_game *game);
+int	save_conf(t_game *game, char **strs);
+int	is_empty(char *line);
+int	read_map(t_game *game);
+char	**split_w_space(t_game *game, int wd, char c);
+char	*fill_w_space(int len);
+int	map_check(t_game *game);
+int	rectmap_check(t_game *game);
+int	start_game(t_game *game);
+int	ft_destroy_exit(t_game *game);
+int	ft_key(int keycode, t_game *game);
+void	ft_move(t_game *game, int direction);
+float	ft_ray(t_game *game, float v);
+void	ft_ray_casting(t_game *game);
+void	ft_redraw(t_game *game);
+void	ft_line(t_game *game, int w, float dist);
+int	ft_sign(float f);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:57:38 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 04:35:19 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:51:50 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	mini_atoi(char **rgb, int *i)
+static int	mini_atoi(char **rgb, int *i)
 {
 	int	tmp;
 
@@ -31,7 +31,7 @@ int	mini_atoi(char **rgb, int *i)
 	return (tmp);
 }
 
-int	set_color(t_game *game, char *rgb, char c, int *k)
+static int	set_color(t_game *game, char *rgb, char c, int *k)
 {
 	int	i;
 	t_rgb	set;
@@ -57,7 +57,7 @@ int	set_color(t_game *game, char *rgb, char c, int *k)
 	return (0);
 }
 
-int	set_path(t_game *game, char *path, int index, int *k)
+static int	set_path(t_game *game, char *path, int index, int *k)
 {
 	if (ft_strlen(path) < 5)
 		return (printf("Invalid xpm file\n"), 1);
@@ -72,26 +72,38 @@ int	set_path(t_game *game, char *path, int index, int *k)
 	return (0);
 }
 
-int	identify_and_save(t_game *game, char **tmp, int *k)
+static int	identify_and_save(t_game *game, char **tmp, int *k)
 {
 	if (!ft_strcmp(tmp[0], "C"))
+	{
 		if (set_color(game, tmp[1], 'C', k))
 			return (1);
+	}
 	else if (!ft_strcmp(tmp[0], "F"))
+	{
 		if (set_color(game, tmp[1], 'F', k))
 			return (1);
+	}
 	else if (!ft_strcmp(tmp[0], "WE") && game->text_paths[0] == NULL)
+	{
 		if (set_path(game, tmp[1], 0, k))
 			return (1);
+	}
 	else if (!ft_strcmp(tmp[0], "SO") && game->text_paths[1] == NULL)
+	{
 		if (set_path(game, tmp[1], 1, k))
 			return (1);
+	}
 	else if (!ft_strcmp(tmp[0], "EA") && game->text_paths[2] == NULL)
+	{
 		if (set_path(game, tmp[1], 2, k))
 			return (1);
+	}
 	else if (!ft_strcmp(tmp[0], "NO") && game->text_paths[3] == NULL)
+	{
 		if (set_path(game, tmp[1], 3, k))
 			return (1);
+	}
 	else
 		return (1);
 	return (0);

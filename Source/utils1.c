@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:55:45 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 19:49:04 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:54:27 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ static int	read_conf(t_game *game)
 	if (game->fd == -1)
 		return (1);
 	conf = NULL;
+	line = NULL;
 	line = get_next_line(game->fd);
 	i = 0;
 	while (line && i < 6)
 	{
+		printf("line in read_conf= %s\n", line);
 		if (!is_empty(line))
 		{
 			conf = gnl_strjoin(conf, line);
@@ -61,6 +63,7 @@ int	read_init(t_game *game)
 	read_conf(game);
 	if (!game->cubfile)
 		return (1);
+	printf("cubfile = %s\n", game->cubfile);
 	strs = ft_split(game->cubfile, '\n');
 	if (!strs)
 		return (1);

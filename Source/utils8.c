@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:39:13 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 20:03:36 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:54:25 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static void	ft_ray_initial_calculations(t_game *game, t_ray *r, float v)
 	r->hor_y = (int) game->py;
 	if (r->sy > 0)
 		r->hor_y += 1.0f;
+	r->hor_w = 0;
+	r->vert_y = 0;
+	r->hor_x = 0;
+	r->vert_w = 0;
 }
 
 static void	ft_ray_next_step_calculation(t_game *game, t_ray *r)

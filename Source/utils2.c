@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:57:38 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 19:51:50 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:54:26 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	set_path(t_game *game, char *path, int index, int *k)
 {
 	if (ft_strlen(path) < 5)
 		return (printf("Invalid xpm file\n"), 1);
+	printf("path = %s\n", path);
 	if (ft_strcmp(path + ft_strlen(path) - 4, ".xpm"))
 		return (printf("Map sould be a .xpm file\n"), 1);
 	if (ft_strncmp(path, "./", 2))
@@ -119,6 +120,7 @@ int	save_conf(t_game *game, char **strs)
 	k = 0;
 	while (strs[++i])
 	{
+		printf("strs[i] = %s\n", strs[i]);
 		tmp = ms_split(strs[i], " \t");
 		if (!tmp)
 			return (printf("failed malloc :( \n"), 1);

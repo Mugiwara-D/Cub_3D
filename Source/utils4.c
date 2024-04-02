@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:43:32 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 19:53:29 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:54:25 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ char	*substr_w_space(t_game *game, int start, int len)
 	i = 1;
 	while (len-- && start < (int)ft_strlen(game->map))
 		str[i++] = game->map[start++];
+	printf("test\n");
 	while (i < game->maxcol + 2)
-		str[i] = ' ';
+		str[i++] = ' ';
 	str[i] = 0;
 	return (str);
 }

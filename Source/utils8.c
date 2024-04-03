@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:39:13 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 21:54:25 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 04:06:27 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	ft_ray_casting(t_game *game)
 	while (++x < WIDTH)
 	{
 		ft_line(game, x, ft_ray(game, v) * cos(game->angle - v));
-		// ft_line(game, x, ft_ray(game, v));
 		v += dv;
 	}
 }

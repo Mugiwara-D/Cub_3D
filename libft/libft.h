@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:34:48 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 03:05:52 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 04:49:37 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*gnl_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 char	**ms_split(char const *s, char *charset);
+char	**ft_tabjoin(char **tab, char *s);
 size_t	ft_strlen(const char *s);
 size_t	ft_len(char *str, char c);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);

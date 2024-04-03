@@ -1,8 +1,9 @@
 SRC = Source/main.c \
 		Source/read_init.c \
 		Source/save_conf.c \
+		Source/set_colorpath.c \
 		Source/read_map.c \
-		Source/read_map.c \
+		Source/split_space.c \
 		Source/map_check.c \
 		Source/start_game.c \
 		Source/ft_keypress.c \
@@ -31,6 +32,7 @@ all : $(NAME)
 # 	$(CC) $(FLAG) $(OBJ) -L$(LIB_D) $(MLX) -o $(NAME)
 
 $(NAME) : $(OBJ) | $(LIB) 
+	@make -C mlx_linux
 	$(CC) $(FLAG) $(OBJ) $(LIB) $(MLX) -o $(NAME)
 
 %.o : %.c

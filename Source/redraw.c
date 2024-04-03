@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:54:18 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 16:34:03 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:57:48 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ void	ft_line(t_game *game, int w, float dist)
 
 	h = (float) HEIGHT / dist;
 	src_f = 0.0f;
-	d_shift = (float) game->text[game->txt_idx].height / h;
+	d_shift = (float) game->text[game->text_idx].height / h;
 	if (h > HEIGHT)
 	{
-		src_f = 0.5f * (h - HEIGHT) / h * game->text[game->txt_idx].height;
+		src_f = 0.5f * (h - HEIGHT) / h * game->text[game->text_idx].height;
 		h = HEIGHT;
 	}
-	src = (unsigned int *) game->text[game->txt_idx].addr;
-	src += (int)((float) game->txt_w * game->text[game->txt_idx].width);
+	src = (unsigned int *) game->text[game->text_idx].addr;
+	src += (int)((float) game->text_w * game->text[game->text_idx].width);
 	dst = (unsigned int *) game->img.addr + w + (HEIGHT - h) / 2 * WIDTH;
 	while (h-- > 0)
 	{
-		*dst = *(src + ((int)src_f) * game->text[game->txt_idx].width);
-		// *dst = game->txt_idx * 255 + (1 - game->txt_idx) * (255 << 8);
+		*dst = *(src + ((int)src_f) * game->text[game->text_idx].width);
+		// *dst = game->text_idx * 255 + (1 - game->text_idx) * (255 << 8);
 		dst += WIDTH;
 		src_f += d_shift;
 	}

@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:39:13 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 16:33:50 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:55:02 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	ft_ray_next_step_calculation(t_game *game, t_ray *r)
 
 static float	ft_save_color(t_game *game, float dist, int color_idx, float w)
 {
-	game->txt_idx = color_idx;
-	game->txt_w = w;
+	game->text_idx = color_idx;
+	game->text_w = w;
 	return (dist);
 }
 

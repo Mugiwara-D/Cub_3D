@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:26:29 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 21:54:23 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:03:38 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define HEIGHT		480
 # define ANGLE_STEP		0.02f
 # define LINEAR_STEP	0.3f
-# define FOV			1.047f // Field Of Vision 60 degrees
+# define FOV			1.047f
 # define MAP_SCALE		4
 
 typedef struct s_sprite
@@ -112,8 +112,8 @@ typedef struct s_game
 	float		px;
 	float		py;
 	float		angle;
-	float		txt_w;
-	int			txt_idx;
+	float		text_w;
+	int			text_idx;
 
 	void		*mlx;
 	void		*win;
@@ -125,6 +125,9 @@ typedef struct s_game
 void	clean_strs(char **strs1, char **strs2, char **strs3);
 int		read_init(t_game *game);
 int		save_conf(t_game *game, char **strs);
+int		set_path(t_game *game, char *path, int index, int *k);
+int		shet_color(t_game *game, char **rgb, char c, int *k);
+int		set_color(t_game *game, char *rgb, char c, int *k);
 int		is_empty(char *line);
 int		read_map(t_game *game);
 char	**split_w_space(t_game *game, int wd, char c);

@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:36:14 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/02 21:54:27 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:59:48 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	init_zero(t_game *game, char *argv)
 	game->px = 0;
 	game->py = 0;
 	game->angle = 0;
-	game->txt_w = 0;
-	game->txt_idx = 0;
+	game->text_w = 0;
+	game->text_idx = 0;
 	game->mlx = NULL;
 	game->win = NULL;
 	game->argv = argv;
@@ -71,27 +71,12 @@ void	init_zero(t_game *game, char *argv)
 
 int	arg_check(int argc, char **argv)
 {
-	// int		fd;
-	// char	*line;
-
 	if (argc != 2)
 		return (printf("Synthax should be : ./cub3d path_to_map.cub\n"), 1);
 	if (ft_strlen(argv[1]) < 5)
 		return (printf("Invalid map file\n"), 1);
 	if (ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub"))
 		return (printf("Map sould be a .cub file\n"), 1);
-	// fd = open(argv[1], O_RDONLY);
-	// if (fd == -1)
-	// 	return (printf("failed to open map file\n"), 1);
-	// line = get_next_line(fd);
-	// if (!line)
-	// {
-	// 	close(fd);
-	// 	return (printf("map file is empty \n"), 1);
-	// }
-	// free(line);
-	// line = NULL;
-	// close(fd);
 	return (0);
 }
 

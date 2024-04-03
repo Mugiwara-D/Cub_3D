@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:57:38 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:05:03 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:44:45 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int	save_conf(t_game *game, char **strs)
 	k = 0;
 	while (strs[++i])
 	{
-		printf("strs[%d] = %s\n", i, strs[i]);
+		// printf("strs[%d] = %s\n", i, strs[i]);
 		tmp = ms_split(strs[i], " \t");
 		if (!tmp)
 			return (printf("failed malloc :( \n"), 1);

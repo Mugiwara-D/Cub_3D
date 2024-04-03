@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:02:00 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:05:10 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:49:22 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	shet_color(t_game *game, char **rgb, char c, int *k)
 		str = gnl_strjoin(str, rgb[i]);
 	printf("str in shet = %s\n", str);
 	if (!ft_isdigit(str[ft_strlen(str) - 1]))
-		return (printf("6\n"), 1);
+		return (printf("6\n"), free(str), 1);
 	if (set_color(game, str, c, k))
-		return (printf("7\n"), 1);
+		return (printf("7\n"), free(str), 1);
 	free(str);
 	return (0);
 }

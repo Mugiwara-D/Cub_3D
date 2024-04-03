@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:13:06 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 16:33:19 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:36:28 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int	ft_destroy_exit(t_game *game)
 	while (++i < 4)
 		if (game->text[i].img)
 			mlx_destroy_image(game->mlx, game->text[i].img);
-	// free_all(game);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free_all(game);
 	exit(0);
 }
 

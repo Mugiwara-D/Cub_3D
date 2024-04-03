@@ -6,15 +6,16 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:36:14 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 17:59:48 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:59:21 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_strs(char **strs1, char **strs2, char **strs3)
+void	clean_strs(char **strs1, char **strs2, char *strs3[4])
 {
 	char	**strs;
+	int		i;
 
 	if (strs1)
 	{
@@ -32,18 +33,29 @@ void	clean_strs(char **strs1, char **strs2, char **strs3)
 	}
 	if (strs3)
 	{
+		i = 0;
 		strs = strs3;
-		while (*strs)
-			free(*(strs++));
-		free(strs3);
+		while (i < 4 && strs[i])
+			free(strs[i++]);
 	}
+}
+
+void	free_all(t_game *game)
+{
+	clean_strs(game->rectmap, 0, game->text_paths);
+	if (game->config)
+		free(game->config);
+	if (game->map)
+		free(game->map);
+	close(game->fd);
+	free(game);
 }
 
 void	init_zero(t_game *game, char *argv)
 {
 	int	i;
 
-	game->cubfile = NULL;
+	game->config = NULL;
 	game->rectmap = NULL;
 	game->map = NULL;
 	game->maxcol = 0;
@@ -91,13 +103,15 @@ int	main(int argc, char **argv)
 		return (printf("failed to malloc structure\n"), 1);
 	init_zero(game, argv[1]);
 	if (read_init(game))
-		return (1);
+		return (free_all(game), 1);
 	if (read_map(game))
-		return (1);
+		return (free_all(game), 1);
 	if (!game->map)
-		return (1); //failed malloc
+		return (free_all(game), 1); //failed malloc
 	if (map_check(game))
-		return (1);
+		return (free_all(game), 1);
 	if (start_game(game))
-		return (1);
+		return (free_all(game), 1);
+	free_all(game);
+	return (0);
 }

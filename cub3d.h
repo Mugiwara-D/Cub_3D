@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:26:29 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:03:38 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:32:39 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_game
 {
 	char		**rectmap;
 	char		*text_paths[4];
-	char		*cubfile;
+	char		*config;
 	char		*map;
 	char		*argv;
 	int			fd;
@@ -122,7 +122,7 @@ typedef struct s_game
 
 }	t_game;
 
-void	clean_strs(char **strs1, char **strs2, char **strs3);
+void	clean_strs(char **strs1, char **strs2, char *strs3[4]);
 int		read_init(t_game *game);
 int		save_conf(t_game *game, char **strs);
 int		set_path(t_game *game, char *path, int index, int *k);
@@ -142,6 +142,7 @@ float	ft_ray(t_game *game, float v);
 void	ft_ray_casting(t_game *game);
 void	ft_redraw(t_game *game);
 void	ft_line(t_game *game, int w, float dist);
+void	free_all(t_game *game);
 int		ft_sign(float f);
 
 #endif

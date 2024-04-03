@@ -36,12 +36,10 @@ static int	read_conf(t_game *game)
 	if (game->fd == -1)
 		return (1);
 	conf = NULL;
-	line = NULL;
 	line = get_next_line(game->fd);
 	i = 0;
 	while (line && i < 6)
 	{
-		printf("line in read_conf= %s\n", line);
 		if (!is_empty(line))
 		{
 			conf = gnl_strjoin(conf, line);
@@ -52,7 +50,7 @@ static int	read_conf(t_game *game)
 			break ;
 		line = get_next_line(game->fd);
 	}
-	game->cubfile = conf;
+	game->config = conf;
 	return (0);
 }
 
@@ -60,14 +58,16 @@ int	read_init(t_game *game)
 {
 	char	**strs;
 
-	read_conf(game);
-	if (!game->cubfile)
+	if (read_conf(game))
 		return (1);
-	printf("cubfile = %s\n", game->cubfile);
-	strs = ft_split(game->cubfile, '\n');
+	if (!game->config)
+		return (1);
+	printf("config = %s\n", game->config);
+	strs = ft_split(game->config, '\n');
 	if (!strs)
 		return (1);
 	if (save_conf(game, strs))
-		return (1);
+		return (clean_strs(strs, 0, 0), 1);
+	clean_strs(strs, 0, 0);
 	return (0);
 }

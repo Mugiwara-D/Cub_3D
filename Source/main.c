@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:36:14 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:59:21 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:46:37 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	clean_strs(char **strs1, char **strs2, char *strs3[4])
 	}
 }
 
-void	free_all(t_game *game)
+void	free_mem(t_game *game)
 {
 	clean_strs(game->rectmap, 0, game->text_paths);
 	if (game->config)
@@ -103,15 +103,15 @@ int	main(int argc, char **argv)
 		return (printf("failed to malloc structure\n"), 1);
 	init_zero(game, argv[1]);
 	if (read_init(game))
-		return (free_all(game), 1);
+		return (free_mem(game), 1);
 	if (read_map(game))
-		return (free_all(game), 1);
+		return (free_mem(game), 1);
 	if (!game->map)
-		return (free_all(game), 1); //failed malloc
+		return (free_mem(game), 1); //failed malloc
 	if (map_check(game))
-		return (free_all(game), 1);
+		return (free_mem(game), 1);
 	if (start_game(game))
-		return (free_all(game), 1);
-	free_all(game);
+		return (free_mem(game), 1);
+	free_mem(game);
 	return (0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_keypress.c                                      :+:      :+:    :+:   */
+/*   key_handlerpress.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-int	ft_sign(float f)
+int	get_sign(float f)
 {
 	if (f < 0.0f)
 	{
@@ -38,34 +38,34 @@ void	ft_move(t_game *game, int direction)
 	float	angle;
 
 	angle = game->angle + direction * M_PI / 2;
-	dx = LINEAR_STEP * cos(angle);
-	dy = LINEAR_STEP * sin(angle);
-	dist = ft_ray(game, ft_sign(dy) * M_PI / 2);
+	dx = MV_SPEED * cos(angle);
+	dy = MV_SPEED * sin(angle);
+	dist = ft_ray(game, get_sign(dy) * M_PI / 2);
 	if (dist * dist < dy * dy)
 		dy = 0.0f;
-	dist = ft_ray(game, (1 - (ft_sign(dx) + 1) / 2) * M_PI);
+	dist = ft_ray(game, (1 - (get_sign(dx) + 1) / 2) * M_PI);
 	if (dist * dist < dx * dx)
 		dx = 0.0f;
 	dist = ft_ray(game, angle);
 	if (dist * dist < dy * dy + dx * dx)
-		if (ft_sign(dy) * ft_sign(dx) != 0)
+		if (get_sign(dy) * get_sign(dx) != 0)
 			dy = 0.0f;
 	game->px += dx;
 	game->py -= dy;
 }
 
-int	ft_key(int keycode, t_game *game)
+int	key_handler(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-		ft_destroy_exit(game);
+		terminate(game);
 	else if (keycode == KEY_UP || keycode == KEY_W)
 		ft_move(game, 0);
 	else if (keycode == KEY_DOWN || keycode == KEY_S)
 		ft_move(game, 2);
 	else if (keycode == KEY_LEFT)
-		game->angle -= ANGLE_STEP * M_PI;
+		game->angle -= ROT_SPEED * M_PI;
 	else if (keycode == KEY_RIGHT)
-		game->angle += ANGLE_STEP * M_PI;
+		game->angle += ROT_SPEED * M_PI;
 	else if (keycode == KEY_A)
 		ft_move(game, 3);
 	else if (keycode == KEY_D)

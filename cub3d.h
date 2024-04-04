@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:26:29 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:32:39 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:46:31 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@
 
 # define WIDTH		640
 # define HEIGHT		480
-# define ANGLE_STEP		0.02f
-# define LINEAR_STEP	0.3f
-# define FOV			1.047f
-# define MAP_SCALE		4
+# define ROT_SPEED		0.02f
+# define MV_SPEED	0.3f
+# define FOV			1.047f // Field Of Vision 60 degrees
 
 typedef struct s_sprite
 {
@@ -84,10 +83,10 @@ typedef struct s_ray
 	float	dy;
 	int		sx;
 	int		sy;
-	float	hor_x;
-	float	hor_y;
-	float	vert_x;
-	float	vert_y;
+	float	horhit_x;
+	float	horhit_y;
+	float	verthit_x;
+	float	verthit_y;
 	float	vert_dist;
 	float	hor_dist;
 	float	vert_w;
@@ -122,12 +121,9 @@ typedef struct s_game
 
 }	t_game;
 
-void	clean_strs(char **strs1, char **strs2, char *strs3[4]);
+void	clean_strs(char **strs1, char **strs2, char **strs3);
 int		read_init(t_game *game);
 int		save_conf(t_game *game, char **strs);
-int		set_path(t_game *game, char *path, int index, int *k);
-int		shet_color(t_game *game, char **rgb, char c, int *k);
-int		set_color(t_game *game, char *rgb, char c, int *k);
 int		is_empty(char *line);
 int		read_map(t_game *game);
 char	**split_w_space(t_game *game, int wd, char c);
@@ -135,14 +131,13 @@ char	*fill_w_space(int len);
 int		map_check(t_game *game);
 int		rectmap_check(t_game *game);
 int		start_game(t_game *game);
-int		ft_destroy_exit(t_game *game);
-int		ft_key(int keycode, t_game *game);
+int		terminate(t_game *game);
+int		key_handler(int keycode, t_game *game);
 void	ft_move(t_game *game, int direction);
 float	ft_ray(t_game *game, float v);
 void	ft_ray_casting(t_game *game);
 void	ft_redraw(t_game *game);
 void	ft_line(t_game *game, int w, float dist);
-void	free_all(t_game *game);
-int		ft_sign(float f);
+int		get_sign(float f);
 
 #endif

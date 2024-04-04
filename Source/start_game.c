@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:13:06 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:36:28 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:46:29 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_resoures_initialisation(t_game *game)
 		if (!game->text[i].img)
 		{
 			ft_dprintf(2, "Can't read file '%s'\n", game->text_paths[i]);
-			ft_destroy_exit(game);
+			terminate(game);
 		}
 		game->text[i].addr = mlx_get_data_addr(game->text[i].img,
 				&game->text[i].bits_per_pixel, &game->text[i].line_length,
@@ -66,7 +66,7 @@ void	ft_resoures_initialisation(t_game *game)
 	}
 }
 
-int	ft_destroy_exit(t_game *game)
+int	terminate(t_game *game)
 {
 	int	i;
 
@@ -78,7 +78,7 @@ int	ft_destroy_exit(t_game *game)
 			mlx_destroy_image(game->mlx, game->text[i].img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	free_all(game);
+	free_mem(game);
 	exit(0);
 }
 
@@ -89,8 +89,8 @@ int	start_game(t_game *game)
 	ft_resoures_initialisation(game);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3d");
 	ft_redraw(game);
-	mlx_hook(game->win, KeyPress, KeyPressMask, ft_key, game);
-	mlx_hook(game->win, DestroyNotify, ButtonPressMask, ft_destroy_exit, game);
+	mlx_hook(game->win, KeyPress, KeyPressMask, key_handler, game);
+	mlx_hook(game->win, DestroyNotify, ButtonPressMask, terminate, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

@@ -26,31 +26,47 @@ int	is_empty(char *line)
 	return (1);
 }
 
+int	check_configline(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (strchr(" \t", line[i]))
+		i++;
+	printf("i = %d, line in check = %s\n", i, line);
+	if (line[i] && line[i] != '\n')
+		if (ft_strncmp(line + i, "NO", 2) && ft_strncmp(line + i, "SO", 2)
+			&& ft_strncmp(line + i, "WE", 2) && ft_strncmp(line + i, "EA", 2)
+			&& ft_strncmp(line + i, "F", 1) && ft_strncmp(line + i, "C", 1))
+			return (printf("invalid or missing line in config\n"), 1);
+	return (0);
+}
+
 static int	read_conf(t_game *game)
 {
 	int		i;
 	char	*line;
-	char	*conf;
 
 	game->fd = open(game->argv, O_RDONLY);
 	if (game->fd == -1)
-		return (1);
-	conf = NULL;
+		return (printf("couldn't open map file\n"), 1);
 	line = get_next_line(game->fd);
 	i = 0;
 	while (line && i < 6)
 	{
+		printf("i = %d, line in read_conf = %s\n", i, line);
 		if (!is_empty(line))
 		{
-			conf = gnl_strjoin(conf, line);
+			game->config = gnl_strjoin(game->config, line);
 			i++;
 		}
+		if (check_configline(line))
+			return (free(line), 1);
 		free(line);
 		if (i == 6)
 			break ;
 		line = get_next_line(game->fd);
 	}
-	game->config = conf;
 	return (0);
 }
 

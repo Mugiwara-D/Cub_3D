@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:26:29 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 16:51:54 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:22:22 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,6 @@ int		get_sign(float f);
 int	set_color(t_game *game, char *rgb, char c, int *k);
 int	shet_color(t_game *game, char **rgb, char c, int *k);
 int	set_path(t_game *game, char *path, int index, int *k);
-void	free_mem(t_game *game);
+void	free_mem(t_game *game, int i);
 
 #endif

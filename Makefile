@@ -36,7 +36,7 @@ $(NAME) : $(OBJ) | $(LIB)
 	$(CC) $(FLAG) $(OBJ) $(LIB) $(MLX) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(FLAG) -I/usr/include -Iminilibx-linux -O3 -c $< -o $@
+	$(CC) $(FLAG) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(LIB) :
 	@make -C $(LIB_D) 

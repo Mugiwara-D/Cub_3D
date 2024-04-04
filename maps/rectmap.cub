@@ -1,10 +1,10 @@
 
-NO ./wool/black_wool.xpm
-SO      ./wool/yellow_wool.xpm
-C 171,191,219
-WE                   ./wool/cyan_wool.xpm
-EA ./wool/red_wool.xpm
-F            42,98,61
+NO ./resources/supawall.xpm
+SO      ./resources/supawall3.xpm
+C 0,0,126
+WE                   ./resources/supawall4.xpm
+EA   ./resources/supawall5.xpm
+F            126,0,0
 
 1111111111111111111111111111111
 1000000000000000000000000000001
@@ -25,5 +25,5 @@ F            42,98,61
 1001001111001001111001111001101
 1001000001000001000001000001001
 1001111001111001001111111111001
-10000000000010000000010000010W1
+1000000000001000000001000001001
 1111111111111111111111111111111

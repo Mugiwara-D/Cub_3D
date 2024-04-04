@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:13:06 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 15:46:29 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:23:09 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	terminate(t_game *game)
 			mlx_destroy_image(game->mlx, game->text[i].img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	free_mem(game);
+	free_mem(game, 1);
 	exit(0);
 }
 
@@ -86,6 +86,8 @@ int	start_game(t_game *game)
 {
 	starting_position(game);
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (1);
 	ft_resoures_initialisation(game);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3d");
 	ft_redraw(game);

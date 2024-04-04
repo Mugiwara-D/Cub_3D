@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:02:00 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 18:49:22 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:38:07 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	set_color(t_game *game, char *rgb, char c, int *k)
 	t_rgb	set;
 
 	i = 0;
+	if (!ft_isdigit(rgb[ft_strlen(rgb) - 1]))
+		return (printf("invalid character in color config\n"), 1);
 	set.r = mini_atoi(&rgb, &i);
 	if (set.r == -1)
 		return (1);
@@ -65,7 +67,7 @@ int	shet_color(t_game *game, char **rgb, char c, int *k)
 		str = gnl_strjoin(str, rgb[i]);
 	printf("str in shet = %s\n", str);
 	if (!ft_isdigit(str[ft_strlen(str) - 1]))
-		return (printf("6\n"), free(str), 1);
+		return (printf("invalid character in color config\n"), free(str), 1);
 	if (set_color(game, str, c, k))
 		return (printf("7\n"), free(str), 1);
 	free(str);
@@ -78,9 +80,10 @@ int	set_path(t_game *game, char *path, int index, int *k)
 		return (printf("Invalid xpm file\n"), 1);
 	printf("path = %s\n", path);
 	if (ft_strcmp(path + ft_strlen(path) - 4, ".xpm"))
-		return (printf("Map sould be a .xpm file\n"), 1);
+		return (printf("xpm should be a .xpm file\n"), 1);
 	if (ft_strncmp(path, "./", 2))
 		return (printf("should be ./path_to_file.xpm\n"), 1);
+	printf("path = %s\n", path);
 	game->text_paths[index] = ft_strdup(path);
 	if (!game->text_paths[index])
 		return (printf("malloc failed :( \n"), 1);

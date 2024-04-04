@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:09 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 16:33:07 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:00:18 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	rectmap_check(t_game *game)
 			if (game->rectmap[i][j] == ' ')
 			{
 				if (check_adjacent(game, game->rectmap, i, j))
-					return (1);
+					return (printf("invalid space within map\n"), 1);
 			}
 	}
 	return (0);

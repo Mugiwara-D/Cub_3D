@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 04:37:53 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 16:32:38 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:55:19 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static int	imposter_check(t_game *game)
 		if (ft_strchr("NSEW", game->map[i]))
 			player++;
 		else if (!ft_strchr(" 01\n", game->map[i]))
-			return (1); //intruder character in the map
+			return (printf("invalid character in map, kinda sus\n"), 1);
 	}
 	if (player != 1)
-		return (1); //more than 1 player 
+		return (printf("missing player or to many players\n"), 1);
 	return (0);
 }
 
@@ -78,7 +78,7 @@ int	read_map(t_game *game)
 	while (line)
 	{
 		if (is_empty(line))
-			return (free(line), 1); //empty line in middle of map
+			return (printf("empty line in mid/end of map\n"), free(line), 1);
 		maxcol = ft_strlen(line);
 		if (maxcol > game->maxcol)
 			game->maxcol = maxcol - 1;

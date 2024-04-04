@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:57:38 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 15:46:30 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:08:44 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,28 @@ static int	identify_and_save(t_game *game, char **tmp, int *k)
 			return (1);	
 	}
 	else
-		return (1);
+		return (printf("unknown argument in conf, should be NO, SO, WE, EA,\
+			C and F\n"), 1);
+	return (0);
+}
+
+int	check_duplicates(t_game *game)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < 3)
+	{
+		j = i;
+		while (++j < 4)
+		{
+			if (!ft_strcmp(game->text_paths[i], game->text_paths[j]))
+				return (printf("same textures found within diff params\n"), 1);
+		}
+	}
+	if (game->color_ceiling == game->color_floor)
+		return (printf("Ceiling and Floor have the same color\n"), 1);
 	return (0);
 }
 
@@ -107,5 +128,7 @@ int	save_conf(t_game *game, char **strs)
 	}
 	if (k != 6)
 		return (printf("invalid number of configuration args \n"), 1);
+	if (check_duplicates(game))
+		return (1);
 	return (0);
 }

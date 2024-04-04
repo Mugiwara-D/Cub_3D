@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:54:18 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/03 17:57:48 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:34:44 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ft_line(t_game *game, int w, float dist)
 	while (h-- > 0)
 	{
 		*dst = *(src + ((int)src_f) * game->text[game->text_idx].width);
-		// *dst = game->text_idx * 255 + (1 - game->text_idx) * (255 << 8);
 		dst += WIDTH;
 		src_f += d_shift;
 	}

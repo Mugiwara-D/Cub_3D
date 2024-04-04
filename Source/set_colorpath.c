@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:02:00 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 19:38:07 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:35:03 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	mini_atoi(char **rgb, int *i)
 
 int	set_color(t_game *game, char *rgb, char c, int *k)
 {
-	int	i;
+	int		i;
 	t_rgb	set;
 
 	i = 0;
@@ -58,7 +58,7 @@ int	set_color(t_game *game, char *rgb, char c, int *k)
 
 int	shet_color(t_game *game, char **rgb, char c, int *k)
 {
-	int	i;
+	int		i;
 	char	*str;
 
 	i = 0;

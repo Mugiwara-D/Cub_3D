@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 04:37:53 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 19:55:19 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:41:07 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	rect_map(t_game *game)
 	w = wd_count(game->map, '\n');
 	game->rectmap = malloc(sizeof(char *) * (w + 3));
 	if (!game->rectmap)
-		return (1); //failed malloc
+		return (1);
 	game->rectmap[0] = fill_w_space(game->maxcol + 2);
 	if (!game->rectmap[0])
 		return (1);
@@ -54,7 +54,7 @@ static int	imposter_check(t_game *game)
 int	map_check(t_game *game)
 {
 	if (imposter_check(game))
-		return (1); //invalid map
+		return (1);
 	if (rect_map(game))
 		return (1);
 	if (rectmap_check(game))
@@ -66,10 +66,10 @@ int	read_map(t_game *game)
 {
 	char	*line;
 	int		maxcol;
-	
+
 	line = get_next_line(game->fd);
 	if (!line)
-		return (1); // no map or failed alloc?
+		return (printf("missing map content in file\n"), 1);
 	while (line && is_empty(line))
 	{
 		free(line);

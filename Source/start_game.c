@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:13:06 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 18:23:09 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:34:29 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	ft_resoures_initialisation(t_game *game)
 	while (++i < 4)
 	{
 		game->text[i].img = mlx_xpm_file_to_image(game->mlx,
-				game->text_paths[i], &game->text[i].width, &game->text[i].height);
+				game->text_paths[i], &game->text[i].width,
+				&game->text[i].height);
 		if (!game->text[i].img)
 		{
 			ft_dprintf(2, "Can't read file '%s'\n", game->text_paths[i]);

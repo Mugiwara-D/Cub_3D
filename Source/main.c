@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:36:14 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 19:29:11 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:37:27 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	clean_strs(char **strs1, char **strs2, char *strs3[4])
 void	free_mem(t_game *game, int i)
 {
 	char	*line;
-	
+
 	clean_strs(game->rectmap, 0, game->text_paths);
 	if (game->config)
 		free(game->config);
@@ -84,7 +84,6 @@ void	init_zero(t_game *game, char *argv)
 	game->mlx = NULL;
 	game->win = NULL;
 	game->argv = argv;
-	game->fd = 0;
 	i = -1;
 	while (++i < 4)
 	{
@@ -119,7 +118,7 @@ int	main(int argc, char **argv)
 	if (read_map(game))
 		return (free_mem(game, 0), 1);
 	if (!game->map)
-		return (free_mem(game, 1), 1); //failed malloc
+		return (free_mem(game, 1), 1);
 	if (map_check(game))
 		return (free_mem(game, 1), 1);
 	if (start_game(game))

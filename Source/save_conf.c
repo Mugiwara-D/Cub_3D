@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:57:38 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/04 19:08:44 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:38:07 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	identify_and_save(t_game *game, char **tmp, int *k)
 		|| !ft_strcmp(tmp[0], "EA") || !ft_strcmp(tmp[0], "NO"))
 	{
 		if (set_paths(game, tmp, k))
-			return (1);	
+			return (1);
 	}
 	else
 		return (printf("unknown argument in conf, should be NO, SO, WE, EA,\
@@ -120,7 +120,7 @@ int	save_conf(t_game *game, char **strs)
 			return (printf("failed malloc :( \n"), 1);
 		if (strs_len(tmp) != 2
 			&& (!ft_strcmp(tmp[0], "WE") || !ft_strcmp(tmp[0], "SO")
-			|| !ft_strcmp(tmp[0], "EA") || !ft_strcmp(tmp[0], "NO")))
+				|| !ft_strcmp(tmp[0], "EA") || !ft_strcmp(tmp[0], "NO")))
 			return (printf("invalid config\n"), clean_strs(tmp, 0, 0), 1);
 		if (identify_and_save(game, tmp, &k))
 			return (clean_strs(tmp, 0, 0), 1);

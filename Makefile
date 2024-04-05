@@ -20,16 +20,13 @@ LIB_D =  ./libft
 
 LIB = $(LIB_D)/libft.a
 
-FLAG = -Wall -Wextra -Werror -g3
+FLAG = -Wall -Wextra -Werror
 
 MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 CC = cc 
 
 all : $(NAME) 
-
-# $(NAME) : $(OBJ) | $(LIB) 
-# 	$(CC) $(FLAG) $(OBJ) -L$(LIB_D) $(MLX) -o $(NAME)
 
 $(NAME) : $(OBJ) | $(LIB) 
 	@make -C mlx_linux
@@ -44,6 +41,7 @@ $(LIB) :
 clean :
 	rm -f $(OBJ)
 	@make -C libft clean
+	@make -C mlx_linux clean
 
 fclean:
 	rm -f $(OBJ) $(NAME)

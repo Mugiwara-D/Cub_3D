@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:57:38 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 11:03:21 by maderuel         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:09:59 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static int	set_colors(t_game *game, char **rgb, int *k)
 
 static int	set_paths(t_game *game, char **tmp, int *k)
 {
-	if (!ft_strcmp(tmp[0], "WE") && game->text_paths[0] == NULL)
+	if (!ft_strcmp(tmp[0], "WE") && game->text_paths[2] == NULL)
 	{
-		if (set_path(game, tmp[1], 0, k))
+		if (set_path(game, tmp[1], 2, k))
 			return (1);
 	}
 	else if (!ft_strcmp(tmp[0], "SO") && game->text_paths[1] == NULL)
@@ -53,9 +53,9 @@ static int	set_paths(t_game *game, char **tmp, int *k)
 		if (set_path(game, tmp[1], 1, k))
 			return (1);
 	}
-	else if (!ft_strcmp(tmp[0], "EA") && game->text_paths[2] == NULL)
+	else if (!ft_strcmp(tmp[0], "EA") && game->text_paths[0] == NULL)
 	{
-		if (set_path(game, tmp[1], 2, k))
+		if (set_path(game, tmp[1], 0, k))
 			return (1);
 	}
 	else if (!ft_strcmp(tmp[0], "NO") && game->text_paths[3] == NULL)

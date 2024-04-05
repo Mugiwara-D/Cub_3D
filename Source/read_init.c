@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:55:45 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 10:03:39 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:07:24 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	check_configline(char *line)
 	i = 0;
 	while (line[i] && strchr(" \t", line[i]))
 		i++;
-	printf("i = %d, line in check = %s\n", i, line);
 	if (line[i] && line[i] != '\n')
 		if (ft_strncmp(line + i, "NO", 2) && ft_strncmp(line + i, "SO", 2)
 			&& ft_strncmp(line + i, "WE", 2) && ft_strncmp(line + i, "EA", 2)
@@ -79,7 +78,6 @@ int	read_init(t_game *game)
 		return (1);
 	if (!game->config)
 		return (1);
-	printf("config = %s\n", game->config);
 	strs = ft_split(game->config, '\n');
 	if (!strs)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:02:00 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 01:35:03 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:29:07 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	shet_color(t_game *game, char **rgb, char c, int *k)
 	str = NULL;
 	while (rgb[++i])
 		str = gnl_strjoin(str, rgb[i]);
-	printf("str in shet = %s\n", str);
 	if (!ft_isdigit(str[ft_strlen(str) - 1]))
 		return (printf("invalid character in color config\n"), free(str), 1);
 	if (set_color(game, str, c, k))
@@ -78,12 +77,10 @@ int	set_path(t_game *game, char *path, int index, int *k)
 {
 	if (ft_strlen(path) < 5)
 		return (printf("Invalid xpm file\n"), 1);
-	printf("path = %s\n", path);
 	if (ft_strcmp(path + ft_strlen(path) - 4, ".xpm"))
 		return (printf("xpm should be a .xpm file\n"), 1);
 	if (ft_strncmp(path, "./", 2))
 		return (printf("should be ./path_to_file.xpm\n"), 1);
-	printf("path = %s\n", path);
 	game->text_paths[index] = ft_strdup(path);
 	if (!game->text_paths[index])
 		return (printf("malloc failed :( \n"), 1);

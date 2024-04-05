@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:39:13 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 04:25:41 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:07:27 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ float	ft_ray(t_game *game, float v)
 	while (1)
 	{
 		ft_ray_next_step_calculation(game, &r);
-		// if (v == game->angle - FOV / 2)
-		// 	printf("verthit_x = %f, horhit_y = %f\n", r.verthit_x, r.horhit_y);
 		if (r.vert_dist < r.hor_dist)
 		{
 			if (game->rectmap[(int)r.verthit_y]
@@ -107,19 +105,3 @@ void	ft_ray_casting(t_game *game)
 		v -= dv;
 	}
 }
-
-// void	ft_ray_casting(t_game *game)
-// {
-// 	int		x;
-// 	float	dv;
-// 	float	v;
-
-// 	v = game->angle - FOV / 2;
-// 	dv = FOV / (WIDTH - 1);
-// 	x = -1;
-// 	while (++x < WIDTH)
-// 	{
-// 		ft_line(game, x, ft_ray(game, v) * cos(game->angle - v));
-// 		v += dv;
-// 	}
-// }

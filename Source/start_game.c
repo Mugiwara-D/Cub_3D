@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:13:06 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 01:34:29 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:09:53 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_resoures_initialisation(t_game *game)
 				&game->text[i].height);
 		if (!game->text[i].img)
 		{
-			ft_dprintf(2, "Can't read file '%s'\n", game->text_paths[i]);
+			printf("Can't read file '%s'\n", game->text_paths[i]);
 			terminate(game);
 		}
 		game->text[i].addr = mlx_get_data_addr(game->text[i].img,

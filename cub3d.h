@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:26:29 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 01:41:51 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 04:30:57 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_game
 
 }	t_game;
 
-void	clean_strs(char **strs1, char **strs2, char **strs3);
+void	clean_strs(char **strs1, char **strs2, char *strs3[4]);
 int		read_init(t_game *game);
 int		save_conf(t_game *game, char **strs);
 int		is_empty(char *line);

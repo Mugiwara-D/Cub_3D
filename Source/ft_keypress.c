@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:29:22 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 01:31:36 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 04:30:54 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ int	key_handler(int keycode, t_game *game)
 	else if (keycode == KEY_DOWN || keycode == KEY_S)
 		ft_move(game, 2);
 	else if (keycode == KEY_LEFT)
-		game->angle -= ROT_SPEED * M_PI;
-	else if (keycode == KEY_RIGHT)
 		game->angle += ROT_SPEED * M_PI;
+	else if (keycode == KEY_RIGHT)
+		game->angle -= ROT_SPEED * M_PI;
 	else if (keycode == KEY_A)
-		ft_move(game, 3);
-	else if (keycode == KEY_D)
 		ft_move(game, 1);
+	else if (keycode == KEY_D)
+		ft_move(game, 3);
 	else
 		return (0);
 	ft_redraw(game);

@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:39:13 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 01:40:29 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 04:25:41 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_ray_next_step_calculation(t_game *game, t_ray *r)
 {
 	if (r->sx != 0)
 	{
-		r->verthit_y = game->py + r->dy / r->dx * (r->verthit_x - game->px);
+		r->verthit_y = r->dy / r->dx * (r->verthit_x - game->px) + game->py;
 		r->vert_dist = sqrt(pow(game->px - r->verthit_x, 2.0)
 				+ pow(game->py - r->verthit_y, 2.0));
 		r->vert_w = r->verthit_y - (int) r->verthit_y;
@@ -45,7 +45,7 @@ static void	ft_ray_next_step_calculation(t_game *game, t_ray *r)
 		r->vert_dist = INFINITY;
 	if (r->sy != 0)
 	{
-		r->horhit_x = game->px + r->dx / r->dy * (r->horhit_y - game->py);
+		r->horhit_x = r->dx / r->dy * (r->horhit_y - game->py) + game->px;
 		r->hor_dist = sqrt(pow(game->px - r->horhit_x, 2.0)
 				+ pow(game->py - r->horhit_y, 2.0));
 		r->hor_w = r->horhit_x - (int) r->horhit_x;
@@ -71,6 +71,8 @@ float	ft_ray(t_game *game, float v)
 	while (1)
 	{
 		ft_ray_next_step_calculation(game, &r);
+		// if (v == game->angle - FOV / 2)
+		// 	printf("verthit_x = %f, horhit_y = %f\n", r.verthit_x, r.horhit_y);
 		if (r.vert_dist < r.hor_dist)
 		{
 			if (game->rectmap[(int)r.verthit_y]
@@ -96,12 +98,28 @@ void	ft_ray_casting(t_game *game)
 	float	dv;
 	float	v;
 
-	v = game->angle - FOV / 2;
+	v = game->angle + FOV / 2;
 	dv = FOV / (WIDTH - 1);
 	x = -1;
 	while (++x < WIDTH)
 	{
 		ft_line(game, x, ft_ray(game, v) * cos(game->angle - v));
-		v += dv;
+		v -= dv;
 	}
 }
+
+// void	ft_ray_casting(t_game *game)
+// {
+// 	int		x;
+// 	float	dv;
+// 	float	v;
+
+// 	v = game->angle - FOV / 2;
+// 	dv = FOV / (WIDTH - 1);
+// 	x = -1;
+// 	while (++x < WIDTH)
+// 	{
+// 		ft_line(game, x, ft_ray(game, v) * cos(game->angle - v));
+// 		v += dv;
+// 	}
+// }

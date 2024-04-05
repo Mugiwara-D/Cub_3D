@@ -6,7 +6,7 @@
 /*   By: xacharle <xacharle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 03:55:45 by xacharle          #+#    #+#             */
-/*   Updated: 2024/04/05 01:32:00 by xacharle         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:03:39 by xacharle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_configline(char *line)
 	int		i;
 
 	i = 0;
-	while (strchr(" \t", line[i]))
+	while (line[i] && strchr(" \t", line[i]))
 		i++;
 	printf("i = %d, line in check = %s\n", i, line);
 	if (line[i] && line[i] != '\n')
@@ -54,7 +54,6 @@ static int	read_conf(t_game *game)
 	i = 0;
 	while (line && i < 6)
 	{
-		printf("i = %d, line in read_conf = %s\n", i, line);
 		if (!is_empty(line))
 		{
 			game->config = gnl_strjoin(game->config, line);
@@ -67,6 +66,8 @@ static int	read_conf(t_game *game)
 			break ;
 		line = get_next_line(game->fd);
 	}
+	if (i != 6)
+		return (printf("config missing or incomplete\n"), 1);
 	return (0);
 }
 
